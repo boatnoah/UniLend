@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
 
 export default function Navbar() {
   return (
@@ -9,6 +10,13 @@ export default function Navbar() {
             <h1 className="text-2xl font-bold text-primary">UniLender</h1>
           </div>
           <div className="flex items-center space-x-4">
+            <Image
+              src="/placeholder.svg?height=32&width=32"
+              alt="Logo"
+              width={32}
+              height={32}
+              className="rounded-full"
+            />
             <Button variant="outline">Log In</Button>
           </div>
         </div>
