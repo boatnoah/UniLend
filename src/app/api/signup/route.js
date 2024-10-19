@@ -1,41 +1,41 @@
 import { NextResponse } from "next/server";
 import { pool } from "@/config/database";
-import swot from "swot-node";
+const swot = require("swot-node");
 import { hash } from "bcrypt";
 
 export async function POST(req) {
-  try {
-    const { first_name, last_name, email, password } = req.json();
+  const { email, firstName, lastName, password } = await req.json();
 
-    // verify email
-    if (!first_name || !last_name || !email || !password) {
-      return NextResponse.json(
-        { error: "Missing required fields" },
-        { status: 400 },
-      );
-    }
-
-    if (!swot.isAcademic(email)) {
-      return NextResponse.json(
-        { error: "Please enter a valid school email" },
-        { status: 400 },
-      );
-    }
-
-    // Hash the password
-    const saltRounds = 10;
-    const hashedPassword = await hash(password, saltRounds);
-
-    const results = await pool.query(
-      `
-	  INSERT INTO users (first_name, last_name, email)
-	  VALUES($1, $2, $3)
-	  RETURNING *`,
-      [first_name, last_name, email, hashedPassword],
+  // verify email
+  if (!firstName || !lastName || !email || !password) {
+    return NextResponse.json(
+      { error: "Missing required fields" },
+      { status: 400 },
     );
-
-    NextResponse.json(results.rows[0], { status: 201 });
-  } catch (error) {
-    NextResponse.json({ error: "Some shi went wrong bruh" }, { status: 500 });
   }
+
+  console.log("string?", email);
+  const validEmail = await swot.isAcademic(email);
+  console.log("IS email valid?", validEmail);
+  if (!validEmail) {
+    return NextResponse.json(
+      { error: "Please enter a valkd school email" },
+      { status: 500 },
+    );
+  }
+
+  // Hash the password
+  const saltRounds = 10;
+  const hashedPassword = await hash(password, saltRounds);
+  console.log("hashedPass", hashedPassword);
+
+  const results = await pool.query(
+    `
+	  INSERT INTO users (first_name, last_name, email, password)
+	  VALUES($1, $2, $3, $4)
+	  RETURNING *`,
+    [firstName, lastName, email, hashedPassword],
+  );
+
+  return NextResponse.json(results.rows[0], { status: 201 });
 }

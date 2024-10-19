@@ -7,16 +7,10 @@ export default function Navbar() {
       <div className="container mx-auto">
         <div className="flex items-center justify-between">
           <div className="flex items-center">
-            <h1 className="text-2xl font-bold text-primary">UniLender</h1>
+            <h1 className="text-2xl font-bold text-primary">UniLend</h1>
           </div>
           <div className="flex items-center space-x-4">
-            <Image
-              src="/placeholder.svg?height=32&width=32"
-              alt="Logo"
-              width={32}
-              height={32}
-              className="rounded-full"
-            />
+            <div className="relative w-8 h-8">Image</div>
             <Button variant="outline">Log In</Button>
           </div>
         </div>

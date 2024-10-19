@@ -49,16 +49,37 @@ const SignUpForm = () => {
     },
   });
 
-  function onSubmit(values) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(values, null, 2)}</code>
-        </pre>
-      ),
-    });
-  }
+  const onSubmit = async (values) => {
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(values),
+    };
+
+    try {
+      const response = await fetch("/api/signup", options);
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      const data = await response.json();
+      console.log("User signed up successfully:", data);
+      toast({
+        title: "Sign Up Successful",
+        description: "Your account has been created.",
+      });
+      // You might want to redirect the user or clear the form here
+    } catch (error) {
+      console.log("Error signing up:", error);
+      toast({
+        title: "Sign Up Failed",
+        description:
+          "There was an error creating your account. Please try again.",
+        variant: "destructive",
+      });
+    }
+  };
 
   return (
     <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
