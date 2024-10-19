@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/hooks/use-toast";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   firstName: z.string().min(2, {
@@ -38,6 +39,7 @@ const formSchema = z.object({
 
 const SignUpForm = () => {
   const { toast } = useToast();
+  const router = useRouter();
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -69,7 +71,7 @@ const SignUpForm = () => {
         title: "Sign Up Successful",
         description: "Your account has been created.",
       });
-      // You might want to redirect the user or clear the form here
+      router.push("/home"); // Redirect the user
     } catch (error) {
       console.log("Error signing up:", error);
       toast({

@@ -14,9 +14,7 @@ export async function POST(req) {
     );
   }
 
-  console.log("string?", email);
   const validEmail = await swot.isAcademic(email);
-  console.log("IS email valid?", validEmail);
   if (!validEmail) {
     return NextResponse.json(
       { error: "Please enter a valkd school email" },
@@ -27,7 +25,6 @@ export async function POST(req) {
   // Hash the password
   const saltRounds = 10;
   const hashedPassword = await hash(password, saltRounds);
-  console.log("hashedPass", hashedPassword);
 
   const results = await pool.query(
     `
