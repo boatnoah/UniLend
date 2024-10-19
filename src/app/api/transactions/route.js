@@ -3,7 +3,7 @@ import { pool } from "@/config/database";
 
 export async function GET() {
   try {
-    const result = await pool.query("SELECT * FROM items");
+    const result = await pool.query("SELECT * FROM transactions");
     return NextResponse.json({ success: true, data: result.rows });
   } catch (error) {
     return NextResponse.json(
