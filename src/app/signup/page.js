@@ -71,6 +71,7 @@ const SignUpForm = () => {
         title: "Sign Up Successful",
         description: "Your account has been created.",
       });
+      localStorage.setItem("token", data.token);
       router.push("/home"); // Redirect the user
     } catch (error) {
       console.log("Error signing up:", error);

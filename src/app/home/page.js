@@ -1,3 +1,10 @@
+import { useEffect } from "react";
+
 export default function Home() {
-  return <div>HomePage</div>;
+  useEffect(() => {
+    const storedValue = localStorage.getItem("token");
+    console.log("local storage", storedValue);
+  }, []);
+
+  return <div className="h-screen bg-black">HomePage</div>;
 }
