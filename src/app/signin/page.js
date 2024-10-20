@@ -60,7 +60,7 @@ const SignUpForm = () => {
       const data = await response.json();
       console.log("User signed up successfully:", data);
       toast({
-        title: "Sign Up Successful",
+        title: "Sign In Successful",
         description: "Your account has been created.",
       });
       localStorage.setItem("token", data.token);
@@ -68,7 +68,7 @@ const SignUpForm = () => {
     } catch (error) {
       console.log("Error signing up:", error);
       toast({
-        title: "Sign Up Failed",
+        title: "Sign In Failed",
         description:
           "There was an error creating your account. Please try again.",
         variant: "destructive",
@@ -78,7 +78,7 @@ const SignUpForm = () => {
 
   return (
     <div className="max-w-md mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-6 text-center">Sign Up</h2>
+      <h2 className="text-2xl font-bold mb-6 text-center">Sign In</h2>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField
@@ -114,7 +114,7 @@ const SignUpForm = () => {
             )}
           />
           <Button type="submit" className="w-full">
-            Sign Up
+            Sign In
           </Button>
         </form>
       </Form>
