@@ -51,10 +51,10 @@ export default function ChatRoom() {
   };
 
   return (
-    <Card className="w-full max-w-md mx-auto">
+    <Card className="w-full max-w-md mx-auto mt-28">
       <CardHeader>
         <CardTitle className="text-2xl font-bold text-center">
-          Send Them a Message
+          Message Seller
         </CardTitle>
       </CardHeader>
       <CardContent></CardContent>

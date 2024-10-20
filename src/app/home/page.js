@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import {
   Card,
@@ -10,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export default function Home() {
   const [items, setItems] = useState([]);
@@ -53,22 +53,31 @@ export default function Home() {
         {items &&
           items.map((item) => (
             <Card key={item.id} className="overflow-hidden">
-              <CardHeader className="p-0">
-                <div className="aspect-square relative">
-                  <img
-                    src={item.img}
-                    alt={item.name}
-                    className="absolute inset-0 w-full h-full object-cover"
-                  />
-                </div>
-              </CardHeader>
-              <CardContent className="p-4">
-                <CardTitle className="text-xl mb-2">{item.name}</CardTitle>
-                <p className="text-gray-600 text-sm mb-2">{item.description}</p>
-                <p className="text-lg font-bold">${item.price.toFixed(2)}</p>
-              </CardContent>
+              <Link href={`/details/${item.id}`}>
+                <CardHeader className="p-0">
+                  <div className="aspect-square relative">
+                    <img
+                      src={item.img}
+                      alt={item.name}
+                      className="absolute inset-0 w-full h-full object-cover"
+                    />
+                  </div>
+                </CardHeader>
+                <CardContent className="p-4">
+                  <CardTitle className="text-xl mb-2">{item.name}</CardTitle>
+                  <p className="text-gray-600 text-sm mb-2">
+                    {item.description}
+                  </p>
+                  <p className="text-lg font-bold">${item.price.toFixed(2)}</p>
+                </CardContent>
+              </Link>
               <CardFooter>
-                <Button className="w-full">Add to Cart</Button>
+                <Link href={"/"} className="mx-2">
+                  <Button className="w-full">Rent Now</Button>
+                </Link>
+                <Link href={"/chat"} className="mx-2">
+                  <Button className="w-full">Message</Button>
+                </Link>
               </CardFooter>
             </Card>
           ))}

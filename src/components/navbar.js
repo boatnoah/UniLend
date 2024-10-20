@@ -27,7 +27,15 @@ export default function Navbar() {
             <h1 className="text-2xl font-bold text-primary">UniLend</h1>
           </div>
           <div className="flex items-center space-x-4">
-            <div className="relative w-8 h-8">Image</div>
+            <div className="relative w-8 h-8">
+              <Image
+                src="/UniLandLogo.png" // Replace with the path to the profile image
+                alt="Profile"
+                width={50} // Set the width of the image (in pixels)
+                height={50} // Set the height of the image (in pixels)
+                className="rounded-full object-cover"
+              />
+            </div>
             <Link href={"/"} onClick={handleSignOut}>
               <Button variant="outline">Sign Out</Button>
             </Link>
@@ -43,9 +51,8 @@ export default function Navbar() {
             <h1 className="text-2xl font-bold text-primary">UniLend</h1>
           </div>
           <div className="flex items-center space-x-4">
-            <div className="relative w-8 h-8">Image</div>
-            <Link href={"/signin"}>
-              <Button variant="outline">Sign In</Button>
+            <Link href={"/signup"}>
+              <Button variant="outline">Sign Up</Button>
             </Link>
           </div>
         </div>

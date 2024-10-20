@@ -1,4 +1,5 @@
 "use client";
+import Link from "next/link";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -158,6 +159,11 @@ const SignUpForm = () => {
           </Button>
         </form>
       </Form>
+      <div className="mt-4 text-center">
+        <Link href="/signin" className="text-blue-600 hover:underline">
+          Already a user? Sign In here
+        </Link>
+      </div>
     </div>
   );
 };
