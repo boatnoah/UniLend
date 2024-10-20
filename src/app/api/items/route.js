@@ -32,3 +32,34 @@ export async function GET() {
     );
   }
 }
+// name image price description
+
+export async function POST(req) {
+  try {
+    // Verify required fields
+    const { name, image, price, description } = await req.json();
+    if (!name || !image || !price || !description) {
+      return NextResponse.json(
+        { error: "Missing required fields" },
+        { status: 400 },
+      );
+    }
+
+    const results = await pool.query(
+      `
+      INSERT INTO items (name, img, price, description)
+      VALUES($1, $2, $3, $4)
+      RETURNING *
+    `,
+      [name, image, price, description],
+    );
+
+    return NextResponse.json(results.rows[0], { status: 201 });
+  } catch (error) {
+    console.error("Error processing message:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 },
+    );
+  }
+}
