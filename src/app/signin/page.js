@@ -61,7 +61,7 @@ const SignUpForm = () => {
       console.log("User signed up successfully:", data);
       toast({
         title: "Sign In Successful",
-        description: "Your account has been created.",
+        description: "Your have successfully signed in.",
       });
       localStorage.setItem("token", data.token);
       router.push("/home"); // Redirect the user

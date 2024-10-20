@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body>
         <Navbar />
-        <div className="">{children}</div>
+        <div className="bg-slate-800 h-screen pt-20">{children}</div>
         <Toaster />
       </body>
     </html>

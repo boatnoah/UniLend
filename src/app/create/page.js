@@ -98,7 +98,7 @@ export default function LendItemForm() {
   };
 
   return (
-    <Card className="w-full max-w-md mx-auto mt-28">
+    <Card className="w-full max-w-md mx-auto">
       <CardHeader>
         <CardTitle className="text-2xl font-bold text-center">
           Lend an Item
@@ -155,7 +155,7 @@ export default function LendItemForm() {
               htmlFor="price"
               className="block text-sm font-medium text-gray-700"
             >
-              Price (per day)
+              Price (total)
             </label>
             <Input
               type="number"
@@ -163,7 +163,7 @@ export default function LendItemForm() {
               name="price"
               value={item.price}
               onChange={handleChange}
-              placeholder="Enter price per day"
+              placeholder="Enter your price"
               min="0"
               step="0.01"
               required
@@ -174,19 +174,19 @@ export default function LendItemForm() {
               htmlFor="description"
               className="block text-sm font-medium text-gray-700"
             >
-              Description
+              Duration
             </label>
             <Textarea
               id="description"
               name="description"
               value={item.description}
               onChange={handleChange}
-              placeholder="Describe your item"
+              placeholder="Enter time here (days)"
               rows={3}
               required
             />
           </div>
-          <Button type="submit" className="w-full">
+          <Button type="submit" className="w-full bg-blue-500">
             Add Item for Lending
           </Button>
         </form>

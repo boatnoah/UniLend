@@ -44,7 +44,7 @@ export default function ProductDetail({ params }) {
   console.log(product.data[0]);
 
   return (
-    <div className="min-h-screen bg-gray-100 p-8">
+    <div className="min-h-screen bg-slate-800 p-8">
       <Card className="max-w-4xl mx-auto">
         <CardHeader>
           <CardTitle className="text-3xl font-bold">
