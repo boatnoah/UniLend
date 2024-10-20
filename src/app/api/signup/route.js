@@ -46,14 +46,18 @@ export async function POST(req) {
   // reutrn token in response
   const token = generateToken();
 
-  const results2 = await pool.query(
-    `   
-    INSERT INTO tokens (token)
-    VALUES($1)
+  try {
+    const results2 = await pool.query(
+      `
+    INSERT INTO tokens (token, user_id)
+    VALUES($1, $2)
     RETURNING *
   `,
-    [token],
-  );
+      [token, results.rows[0].id],
+    );
+  } catch (error) {
+    console.log(error);
+  }
 
   return NextResponse.json({ token }, { status: 201 });
 }
