@@ -51,9 +51,8 @@ export default function Navbar() {
             <h1 className="text-2xl font-bold text-primary">UniLend</h1>
           </div>
           <div className="flex items-center space-x-4">
-            <div className="relative w-8 h-8">Image</div>
-            <Link href={"/signin"}>
-              <Button variant="outline">Sign In</Button>
+            <Link href={"/signup"}>
+              <Button variant="outline">Sign Up</Button>
             </Link>
           </div>
         </div>
