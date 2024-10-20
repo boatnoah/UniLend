@@ -1,15 +1,18 @@
 import { NextResponse } from "next/server";
 import { pool } from "@/config/database";
+import { hash } from "bcrypt";
 
-export async function GET(req) {
+export async function POST(req) {
   try {
-    const pathname = req.nextUrl.pathname;
-    const id = pathname.split("/").pop();
+    console.log(req.json());
+    const { email, password } = req.json();
 
-    const result = await pool.query("SELECT * FROM transactions WHERE id=$1", [
-      id,
-    ]);
-    return NextResponse.json({ success: true, data: result.rows });
+    // Compare email and password
+    console.log(pool.query("SELECT * FROM email WHERE email=$1", [email]));
+
+    // create token and post to tokens
+
+    return NextResponse.json({ success: true });
   } catch (error) {
     return NextResponse.json({ success: false, error: error }, { status: 500 });
   }
