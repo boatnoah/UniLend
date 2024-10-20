@@ -9,19 +9,34 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 export default function Home() {
   const [items, setItems] = useState([]);
+  const router = useRouter();
 
-  const storedToken = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
 
   useEffect(() => {
     const fetchItems = async () => {
       try {
-        const response = await fetch(`/api/items`);
+        const response = await fetch("/api/items", {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+
+        if (response.status == 401) {
+          console.log("caught yo ass");
+          router.replace("/");
+          return;
+        }
+
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
+
         const data = await response.json();
         setItems([...data.data]);
       } catch (error) {
