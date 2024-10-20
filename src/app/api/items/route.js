@@ -12,7 +12,3 @@ export async function GET() {
     );
   }
 }
-
-// export async functon POST() {
-//   //pass
-// }
